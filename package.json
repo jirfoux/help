@@ -4,7 +4,7 @@
   "description": "node package",
   "main": "help.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nodemon test"
   },
   "repository": {
     "type": "git",
@@ -14,5 +14,12 @@
     "util"
   ],
   "author": "shiny_unicorn",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "get-stream": "^5.1.0",
+    "into-stream": "^5.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
 }
