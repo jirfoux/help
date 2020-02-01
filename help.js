@@ -1,39 +1,14 @@
-const zlib = require("zlib");
-const fs = require("fs");
-const intoStream = require("into-stream");
 const stream = require('stream');
 const Transform = stream.Transform || require('readable-stream').Transform;
+const compress = require("./lib/compress");
+const transform = require("./lib/transform");
 
 /**
  * returns objects with stream and encoding
  */
-module.exports.compressString = function (request, message, encodings) {
-    return compress(request, intoStream(message), encodings);
-}
-module.exports.compressFile = function (request, file, encodings) {
-    return compress(request, fs.createReadStream(file), encodings);
-}
-module.exports.compressStream = function (request, stream, encodings) {
-    return compress(request, stream, encodings);
-}
-function compress(request, stream, encodings) {
-    const acceptedEncoding = request.headers["accept-encoding"] || "";
-    let encoding = undefined;
-    function allowed(enc) {
-        return encodings === undefined || encodings.includes(enc);
-    }
-    if (acceptedEncoding.includes("gzip") && allowed("gzip")) {
-        stream = stream.pipe(zlib.createGzip());
-        encoding = "gzip";
-    } else if (acceptedEncoding.includes("deflate") && allowed("deflate")) {
-        stream = stream.pipe(zlib.createDeflate());
-        encoding = "deflate";
-    } else if (acceptedEncoding.includes("br") && allowed("br")) {
-        stream = stream.pipe(zlib.createBrotliCompress());
-        encoding = "br";
-    }
-    return { stream: stream, encoding: encoding };
-}
+module.exports.compressString = compress.compressString;
+module.exports.compressFile = compress.compressFile;
+module.exports.compressStream = compress.compressStream;
 
 module.exports.StringTransform = class StringTransform extends Transform {
     constructor(t) {
@@ -59,6 +34,11 @@ module.exports.StringTransform = class StringTransform extends Transform {
 module.exports.transformStream = function (mapper) {
     return new StringTransform(mapper);
 }
+
+module.exports.minifyCSS = transform.minifyCSS;
+module.exports.minifyJS = transform.minifyJS;
+module.exports.minifyML = transform.minifyML;
+module.exports.convertLess = transform.convertLess;
 
 /**
  * f

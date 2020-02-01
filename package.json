@@ -1,10 +1,10 @@
 {
   "name": "@shiny_unicorn/help",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "node package",
   "main": "help.js",
   "scripts": {
-    "test": "nodemon test"
+    "test": "nodemon test/testserver.js"
   },
   "repository": {
     "type": "git",
@@ -16,8 +16,12 @@
   "author": "shiny_unicorn",
   "license": "UNLICENSED",
   "dependencies": {
+    "csso": "^4.0.2",
     "get-stream": "^5.1.0",
-    "into-stream": "^5.1.1"
+    "html-minifier": "^4.0.0",
+    "into-stream": "^5.1.1",
+    "less": "^3.10.3",
+    "terser": "^4.6.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"

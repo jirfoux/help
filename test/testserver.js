@@ -1,5 +1,5 @@
 const http = require('http');
-const help = require('./help')
+const help = require('../help')
 
 const port = 3004;
 const ip = "0.0.0.0";
@@ -7,8 +7,8 @@ const ip = "0.0.0.0";
 const c = new help.Cache({
     loader: (k) => k + k,
     maxSize: 4,
-    removalListener:(k,v)=>console.log(v+v)
-    
+    removalListener: (k, v) => console.log(v + v)
+
 
 });
 c.put("1", "alpha");
