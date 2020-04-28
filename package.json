@@ -1,6 +1,6 @@
 {
   "name": "@shiny_unicorn/help",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "node package",
   "main": "help.js",
   "scripts": {
@@ -16,14 +16,12 @@
   "author": "shiny_unicorn",
   "license": "UNLICENSED",
   "dependencies": {
-    "csso": "^4.0.2",
-    "get-stream": "^5.1.0",
+    "csso": "^4.0.3",
     "html-minifier": "^4.0.0",
-    "into-stream": "^5.1.1",
-    "less": "^3.10.3",
-    "terser": "^4.6.3"
+    "less": "^3.11.1",
+    "terser": "^4.6.12"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.3"
   }
 }
