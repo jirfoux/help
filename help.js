@@ -1,6 +1,7 @@
 const stream = require('stream');
 const Transform = stream.Transform || require('readable-stream').Transform;
 const transform = require("./lib/transform");
+const utils = require("./lib/utils");
 
 module.exports.StringTransform = class StringTransform extends Transform {
     constructor(t) {
@@ -32,3 +33,4 @@ module.exports.minifyJS = transform.minifyJS;
 module.exports.minifyML = transform.minifyML;
 module.exports.convertLess = transform.convertLess;
 
+module.exports.parseRequest = utils.parseRequest;

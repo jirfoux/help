@@ -1,33 +1,17 @@
+//@ts-check
 const http = require('http');
-const help = require('../help')
+const help = require('../help');
 
 const port = 3004;
 const ip = "0.0.0.0";
 
-const c = new help.Cache({
-    loader: (k) => k + k,
-    maxSize: 4,
-    removalListener: (k, v) => console.log(v + v)
-
-
-});
-c.put("1", "alpha");
-console.log(c.get("2", () => "s" + 1));
-c.invalidateAll();
-console.log(c);
-
-
+let r = null
 
 const requestHandler = (request, response) => {
-    c.put(new Date().getTime() % 30, null);
-    console.log(c.getAllPresent("1"));
-
-    const e = help.compressFile(request, "package-lock.json");
-    const headers = {};
-    if (e.encoding)
-        headers["Content-Encoding"] = e.encoding;
+    const headers = { "content-type": "application/json" };
+    const o = help.parseRequest(request);
     response.writeHead(200, headers);
-    e.stream.pipe(response);
+    response.end(JSON.stringify(o));
 }
 
 const server = http.createServer(requestHandler);
@@ -36,5 +20,7 @@ server.listen(port, ip, (err) => {
     if (err) {
         return console.log('something bad happened', err);
     }
+    http.get("http://" + ip + ":" + port + "?habs=9&karl=&rot=eins&rot=zwei&blau=drei,vier&camu=true", () => { })
+    http.get("http://" + ip + ":" + port + "?habs=8&karl=&rot=eins&rot=zwei&blau=drei,vier&camu=true", () => { })
     console.log(`server is listening on ${port}`);
 });
