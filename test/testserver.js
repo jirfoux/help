@@ -8,7 +8,7 @@ const ip = "0.0.0.0";
 let r = null
 
 const requestHandler = (request, response) => {
-    const headers = { "content-type": "application/json" };
+    const headers = { "content-type": "application/json","content-disposition":"attachment; filename=res.json" };
     const o = help.parseRequest(request);
     response.writeHead(200, headers);
     response.end(JSON.stringify(o));
