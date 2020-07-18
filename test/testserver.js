@@ -9,6 +9,7 @@ let r = null
 
 const requestHandler = (request, response) => {
     const headers = { "content-type": "application/json","content-disposition":"attachment; filename=res.json" };
+    delete headers["content-disposition"];
     const o = help.parseRequest(request);
     response.writeHead(200, headers);
     response.end(JSON.stringify(o));

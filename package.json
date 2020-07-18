@@ -1,6 +1,6 @@
 {
   "name": "@shiny_unicorn/help",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "node package",
   "main": "help.js",
   "scripts": {
@@ -19,7 +19,8 @@
     "cookie": "^0.4.1",
     "csso": "^4.0.3",
     "html-minifier": "^4.0.0",
-    "less": "^3.11.1",
+    "less": "^3.12.2",
+    "query-string": "^6.13.1",
     "terser": "^4.6.13"
   },
   "devDependencies": {
