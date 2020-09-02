@@ -1,6 +1,6 @@
 {
   "name": "@shiny_unicorn/help",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "node package",
   "main": "help.js",
   "scripts": {
