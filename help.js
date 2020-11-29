@@ -1,7 +1,7 @@
+// @ts-check
 const stream = require('stream');
 const Transform = stream.Transform || require('readable-stream').Transform;
 const transform = require("./lib/transform");
-const utils = require("./lib/utils");
 
 module.exports.StringTransform = class StringTransform extends Transform {
     constructor(t) {
@@ -25,12 +25,10 @@ module.exports.StringTransform = class StringTransform extends Transform {
 }
 
 module.exports.transformStream = function (mapper) {
-    return new StringTransform(mapper);
+    return new module.exports.StringTransform(mapper);
 }
 
 module.exports.minifyCSS = transform.minifyCSS;
 module.exports.minifyJS = transform.minifyJS;
 module.exports.minifyML = transform.minifyML;
 module.exports.convertLess = transform.convertLess;
-
-module.exports.parseRequest = utils.parseRequest;
